@@ -1,0 +1,43 @@
+.item {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: var(--common-gap);
+  transition: 100ms ease-in-out;
+  transform-origin: bottom;
+  container-type: inline-size;
+
+  &:hover {
+    transform: scale(1.05);
+    z-index: 99;
+  }
+}
+
+.item > figure {
+  position: relative;
+  aspect-ratio: 1 / 1.6;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 0 1px var(--text);
+}
+
+.item > h3 {
+  font-size: 0.8em;
+  overflow-wrap: anywhere;
+}
+
+@container (min-width: 135px) {
+  .item > h3 {
+    font-size: 0.9em;
+  }
+}
+@container (min-width: 150px) {
+  .item > h3 {
+    font-size: 1em;
+  }
+}
+@container (min-width: 165px) {
+  .item > h3 {
+    font-size: 1.1em;
+  }
+}

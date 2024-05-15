@@ -1,0 +1,97 @@
+.carousel {
+  --display-count: 3;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% / var(--display-count)));
+  gap: var(--common-gap);
+  overflow: auto;
+  cursor: grab;
+  padding: var(--common-gap);
+  font-size: 1rem;
+
+  &::-webkit-scrollbar {
+    height: 0.5ch;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: var(--border-radius);
+  }
+  &::-webkit-scrollbar-track:hover {
+    background: var(--shadow);
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--text);
+    border-radius: var(--border-radius);
+  }
+}
+
+@media (min-width: 481px) {
+  .carousel {
+    --display-count: 4;
+    font-size: 1.05rem;
+  }
+}
+@media (min-width: 769px) {
+  .carousel {
+    --display-count: 5;
+    font-size: 1.1rem;
+  }
+}
+@media (min-width: 1025px) {
+  .carousel {
+    --display-count: 6;
+    font-size: 1.15rem;
+  }
+}
+@media (min-width: 1201px) {
+  .carousel {
+    --display-count: 8;
+    font-size: 1.2rem;
+  }
+}
+/* 파이어폭스만 스타일을 적용시키고 싶으면 사용 */
+@-moz-document url-prefix() {
+  .carousel {
+    scrollbar-width: thin;
+    scrollbar-color: var(--text) transparent;
+  }
+}
+
+.carousel.dragging {
+  cursor: grabbing;
+}
+
+.item {
+  box-shadow: 0 0 3px var(--text);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.item > div {
+  margin: var(--common-gap);
+  display: grid;
+  gap: var(--common-gap);
+}
+
+.img {
+  position: relative;
+  aspect-ratio: 3 / 4;
+}
+
+.item > span {
+  background: var(--shadow);
+  display: block;
+  aspect-ratio: 3 / 4;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 0.8em;
+  overflow-wrap: anywhere;
+}
+
+.character {
+  font-weight: 300;
+  font-size: 0.7em;
+  overflow-wrap: anywhere;
+}

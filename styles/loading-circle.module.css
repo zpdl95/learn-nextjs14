@@ -1,0 +1,57 @@
+.wrapper {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  display: grid;
+  justify-items: center;
+}
+
+.r100 {
+  --r: 100px;
+}
+.r75 {
+  --r: 75px;
+}
+.r50 {
+  --r: 50px;
+}
+
+.wrapper svg {
+  position: relative;
+  width: calc(var(--r) * 2 + 10px);
+  height: calc(var(--r) * 2 + 10px);
+  animation: rotate 2s linear infinite;
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.wrapper svg circle {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke-width: 10;
+  stroke: var(--text);
+  stroke-linecap: round;
+  stroke-dasharray: calc(2 * 3.14 * var(--r)); /* 원 둘레 = 2 * 파이 * 반지름 */
+  stroke-dashoffset: calc(2 * 3.14 * var(--r));
+  transform: translate(50%, 50%);
+  animation: animate 4s linear infinite;
+}
+@keyframes animate {
+  0%,
+  100% {
+    stroke-dashoffset: calc(2 * 3.14 * var(--r));
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+  50.1% {
+    stroke-dashoffset: calc(2 * 3.14 * var(--r) * 2);
+  }
+}

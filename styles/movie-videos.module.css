@@ -1,0 +1,25 @@
+.ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--common-gap);
+  justify-items: stretch;
+  align-items: stretch;
+  padding-bottom: calc(var(--common-gap) * 15);
+}
+
+.ul > li {
+  aspect-ratio: 2 / 1;
+}
+
+.ul > li > iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: var(--border-radius);
+  transition: 100ms ease-in-out;
+
+  &:hover {
+    box-shadow: 0 0 2px 1px var(--text), 0 0 5px 4px var(--text),
+      0 0 10px var(--text);
+  }
+}

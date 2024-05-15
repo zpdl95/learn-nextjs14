@@ -1,0 +1,29 @@
+.wrapper {
+  margin-inline: calc(var(--common-gap) * 2);
+}
+
+@media (min-width: 481px) {
+  .wrapper {
+    margin-inline: calc(var(--common-gap) * 5);
+  }
+}
+@media (min-width: 769px) {
+  .wrapper {
+    margin-inline: calc(var(--common-gap) * 8);
+  }
+}
+@media (min-width: 1025px) {
+  .wrapper {
+    margin-inline: calc(var(--common-gap) * 11);
+  }
+}
+@media (min-width: 1201px) {
+  .wrapper {
+    margin-inline: calc(var(--common-gap) * 14);
+  }
+}
+@media (min-width: 1536px) {
+  .wrapper {
+    margin-inline: calc(var(--common-gap) * 17);
+  }
+}

@@ -1,0 +1,12 @@
+.icon {
+  padding: 0.1em;
+  display: grid;
+  place-items: center;
+  fill: var(--text);
+  border-radius: 50%;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--shadow);
+  }
+}

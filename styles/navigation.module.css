@@ -1,0 +1,46 @@
+.nav {
+  position: sticky;
+  top: 0;
+  font-size: 1.2rem;
+  padding: var(--common-gap);
+  margin-bottom: calc(var(--common-gap) * 2);
+  box-shadow: 0 0 2px var(--text);
+  z-index: 99;
+  background: var(--base);
+}
+
+@media (min-width: 481px) {
+  .nav {
+    font-size: 1.3rem;
+  }
+}
+@media (min-width: 769px) {
+  .nav {
+    font-size: 1.4rem;
+  }
+}
+@media (min-width: 1025px) {
+  .nav {
+    font-size: 1.5rem;
+  }
+}
+@media (min-width: 1201px) {
+  .nav {
+    font-size: 1.6rem;
+  }
+}
+
+.nav > ul {
+  display: flex;
+  justify-content: space-around;
+}
+
+.nav > ul > li {
+  text-transform: uppercase;
+}
+
+.nav > ul > li > span {
+  position: absolute;
+  padding-left: var(--common-gap);
+  font-size: 0.8em;
+}

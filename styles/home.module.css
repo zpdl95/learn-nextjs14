@@ -1,0 +1,35 @@
+.wrapper {
+  --display-count: 3;
+  display: grid;
+  grid-template-columns: repeat(var(--display-count), 1fr);
+  gap: var(--common-gap);
+  padding-bottom: calc(var(--common-gap) * 5);
+}
+
+@media (min-width: 481px) {
+  .wrapper {
+    --display-count: 4;
+  }
+}
+@media (min-width: 769px) {
+  .wrapper {
+    --display-count: 5;
+  }
+}
+@media (min-width: 1025px) {
+  .wrapper {
+    --display-count: 6;
+    gap: calc(var(--common-gap) * 2);
+  }
+}
+@media (min-width: 1201px) {
+  .wrapper {
+    --display-count: 7;
+  }
+}
+@media (min-width: 1536px) {
+  .wrapper {
+    --display-count: 8;
+    gap: calc(var(--common-gap) * 3);
+  }
+}
