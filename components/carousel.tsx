@@ -9,23 +9,20 @@ import DragCarousel from '../utils/dragCarousel';
 export default function Carousel({ datas }) {
   const [dragCarousel, _] = useState(new DragCarousel().setDeceleration(0.97));
   const [uiDragging, setUiDragging] = useState(false);
+  const [dragEnding, setDragEnding] = useState(false);
   const ref = useRef(null);
 
   useEffect(() => {
-    document.addEventListener('mousemove', (e) =>
-      dragCarousel.dragging(e, ref.current)
-    );
-    document.addEventListener('mouseup', (e) =>
-      dragCarousel.dragEnd(setUiDragging, ref.current)
-    );
+    const handleMouseMove = (e) => dragCarousel.dragging(e, ref.current);
+    const handleMouseUp = () =>
+      dragCarousel.dragEnd(setUiDragging, setDragEnding, ref.current);
+
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
 
     return () => {
-      document.removeEventListener('mousemove', (e) =>
-        dragCarousel.dragging(e, ref.current)
-      );
-      document.removeEventListener('mouseup', () =>
-        dragCarousel.dragEnd(setUiDragging, ref.current)
-      );
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
     };
   }, []);
 
@@ -33,13 +30,15 @@ export default function Carousel({ datas }) {
     return (
       <ul
         ref={ref}
-        className={`${styles.carousel} ${uiDragging && styles.dragging}`}
+        className={`${styles.carousel} ${uiDragging && styles.dragging} ${
+          dragEnding && styles.dragEnding
+        }`}
         onMouseDown={(e) =>
           dragCarousel.dragStart(e, setUiDragging, ref.current)
         }
       >
-        {datas.map((c, idx) => (
-          <li key={`${c.id + idx}`} className={styles.item}>
+        {datas.map((c) => (
+          <li key={c.id} className={styles.item}>
             {c.profile_path ? (
               <figure className={styles.img}>
                 <Image fill src={c.profile_path} alt={c.name} />

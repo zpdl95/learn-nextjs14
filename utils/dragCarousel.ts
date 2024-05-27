@@ -19,12 +19,12 @@ export default class DragCarousel {
     this.deceleration = 0;
   }
 
-  setDeceleration(number) {
+  setDeceleration = (number) => {
     this.deceleration = number;
     return this;
-  }
+  };
 
-  dragStart(e, setState, elem: HTMLElement) {
+  dragStart = (e, setState, elem: HTMLElement) => {
     e.preventDefault();
     this.isDragging = true;
     setState(true);
@@ -33,9 +33,9 @@ export default class DragCarousel {
     this.startTime = performance.now();
     this.velocity = 0;
     cancelAnimationFrame(this.animationId);
-  }
+  };
 
-  dragging(e: MouseEvent, elem: HTMLElement) {
+  dragging = (e: MouseEvent, elem: HTMLElement) => {
     if (!this.isDragging) return;
     e.preventDefault();
 
@@ -46,20 +46,38 @@ export default class DragCarousel {
 
     this.velocity = (deltaX / elapsedTime) * 15;
 
-    elem.scrollLeft = this.startScrollLeft - deltaX;
+    const distance = this.startScrollLeft - deltaX;
+    const scrollMin = 0;
+    const scrollMax = elem.scrollWidth - elem.clientWidth;
+
+    if (distance < scrollMin) {
+      elem.style.transform = `translateX(${-(distance / 2)}px)`;
+    } else if (distance > scrollMax) {
+      elem.style.transform = `translateX(${-((distance - scrollMax) / 2)}px)`;
+    } else {
+      elem.scrollLeft = distance;
+    }
 
     this.lastMoveTime = currentTime;
-  }
+  };
 
-  dragEnd(setState, elem: HTMLElement) {
+  dragEnd = (dragingState, dragEndingState, elem: HTMLElement) => {
     if (!this.isDragging) return;
     this.isDragging = false;
-    setState(false);
+    dragingState(false);
 
     const currentTime = performance.now();
     const endWaitTime = currentTime - this.lastMoveTime;
 
     this.velocity = this.velocity * Math.max(0, 1 - endWaitTime / 500);
+
+    dragEndingState(true);
+    setTimeout(() => {
+      elem.style.transform = `translateX(0px)`;
+    });
+    setTimeout(() => {
+      dragEndingState(false);
+    }, 200);
 
     const inertia = () => {
       elem.scrollLeft -= this.velocity;
@@ -72,5 +90,5 @@ export default class DragCarousel {
       }
     };
     inertia();
-  }
+  };
 }

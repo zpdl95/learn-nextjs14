@@ -61,6 +61,10 @@
   cursor: grabbing;
 }
 
+.carousel.dragEnding {
+  transition: transform 200ms;
+}
+
 .item {
   box-shadow: 0 0 3px var(--text);
   border-radius: var(--border-radius);
