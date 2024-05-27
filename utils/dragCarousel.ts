@@ -51,9 +51,9 @@ export default class DragCarousel {
     const scrollMax = elem.scrollWidth - elem.clientWidth;
 
     if (distance < scrollMin) {
-      elem.style.transform = `translateX(${-(distance / 2)}px)`;
+      elem.style.transform = `translateX(${-(distance / 3)}px)`;
     } else if (distance > scrollMax) {
-      elem.style.transform = `translateX(${-((distance - scrollMax) / 2)}px)`;
+      elem.style.transform = `translateX(${-((distance - scrollMax) / 3)}px)`;
     } else {
       elem.scrollLeft = distance;
     }
